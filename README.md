@@ -60,7 +60,7 @@ If you do run into a case where you believe the API is not giving you the latest
 
 ---
 
-### I'm getting an Access Denied (403) error from the API.
+### I'm getting a 403 (Forbidden/Access Denied) error from the API.
 Make sure your program is including a `User-Agent` header in your request. We recommend setting the value to something that identifies your application and includes a contact email. This helps us contact you if we notice unusual behavior, such as your program consuming a high amount of resources.
 
 In the future we will replace the User-Agent requirement with a more typical API key system.
