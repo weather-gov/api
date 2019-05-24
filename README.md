@@ -5,6 +5,9 @@ Welcome! This repository is here to serve as a meeting place for developers in t
 #### Note: This forum is **not** for outages or operational issues!
 Any outages or other technical operational issues with the live service should be reported to the NWS Telecommunications Operations Center by emailing TOC.NWSTG@noaa.gov or calling (301) 713-0902.
 
+### DISCLAIMER
+Any non-government resources, services, or service providers listed or linked in these pages are provided for your convenience and such listing or linking does not constitute any recommendation or endorsement of these resources by the National Weather Service, NOAA, or the US Department of Commerce.
+
 ---
 
 ### What's the API?
@@ -41,6 +44,21 @@ Once you know the latitude and longitude, it's an easy three-step process from t
 3. Retrieve that URL. You'll get a JSON document containing the forecast for that location. There you go!
 
 We're still working on documentation for the JSON that API returns, but we think it's pretty easy to understand if you just look at it. If you need more reference, the forecast JSON very closely aligns with the information you'd see on a web page on forecast.weather.gov. If you still have questions, [see below](#user-content-questions-comments) for how to ask.
+
+---
+
+### I have an address, city name, or zip code location. Can I request data for this location via the API?
+Not directly. You'll need to turn that location into a latitude/longitude pair as described earlier. This is called _geocoding_.
+
+Our API does not offer a geocoding service. There are many free and paid API services available for this. Here are a few:
+
+* [Bing Maps Locations](https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/)
+* [Esri ArcGIS World Geocoding Service](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm)
+* [Geocode.xyz](https://geocode.xyz/api)
+* [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start)
+* [MapBox Geocoding](https://docs.mapbox.com/api/search/#geocoding)
+* [MapQuest Geocoding](https://developer.mapquest.com/documentation/geocoding-api/)
+* [US Census Bureau Geocoding Service](https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html)
 
 ---
 
