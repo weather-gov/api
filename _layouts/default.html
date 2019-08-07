@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ site.title }}: {{ page.title }}</title>
+    <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="http://www.weather.gov" class="header-nws"><img src="{{ site.baseurl }}/assets/images/header.png"  alt="National Weather Service"/></a>
+            <a href="http://www.commerce.gov" class="header-doc"><img src="{{ site.baseurl }}/assets/images/header_doc.png" alt="United States Department of Commerce"/></a>
+            <a href="http://www.noaa.gov" class="header-noaa" title="National Oceanic and Atmospheric Administration"></a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="header-shadow">
+        <div class="header-shadow-content"></div>
+    </div>
+
+    <div class="content">
+        <div class="center-content">
+            <h1>api.weather.gov</h1>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="center-content">
+{{ content }}
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="center-content">
+{% include nav.html %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="one-sixth-first" id="footer_legal_gov">
+                <a href="http://www.usa.gov">
+                    <img src="{{ site.baseurl }}/assets/images/usa_gov.png" alt="usa.gov" width="110" height="30" />
+                </a>
+            </div>
+            <div class="one-half-first" id="footer_legal_info">
+                <div>
+                    <a href="http://www.commerce.gov">US Dept of Commerce</a>
+                </div>
+                <div>
+                    <a href="http://www.noaa.gov">National Oceanic and Atmospheric Administration</a>
+                </div>
+                <div>
+                    <a href="https://www.weather.gov" >National Weather Service</a>
+                </div>
+                <div style="height: 3em"></div>
+                <div>
+                    <a href="mailto:toc.nwstg@noaa.gov">Comments? Questions? Please Contact Us.</a>
+                </div>
+            </div>
+            <div class="one-third-last" id="footer_required_links">
+                <div class="div-half">
+                    <div>
+                        <a href="https://www.weather.gov/disclaimer">Disclaimer</a>
+                    </div>
+                    <div>
+                        <a href="http://www.cio.noaa.gov/services_programs/info_quality.html">Information Quality</a>
+                    </div>
+                    <div>
+                        <a href="https://www.weather.gov/help">Help</a>
+                    </div>
+                    <div>
+                        <a href="http://www.weather.gov/glossary">Glossary</a>
+                    </div>
+                </div>
+                <div class="div-half">
+                    <div>
+                        <a href="https://www.weather.gov/privacy">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <a href="http://www.rdc.noaa.gov/~foia">Freedom of Information Act (FOIA)</a>
+                    </div>
+                    <div>
+                        <a href="https://www.weather.gov/about">About Us</a>
+                    </div>
+                    <div>
+                        <a href="https://www.weather.gov/careers">Career Opportunities</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
