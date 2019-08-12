@@ -9,9 +9,6 @@ The API is also being built to provide a powerful and modern platform for data d
 external customers. We're doing this to help eliminate some internal redundancies, giving you and our own forecasters
 and developers a one-stop shop for vital data.
 
-The API also provides the data backend that will power the next release of our popular Forecast web site (version 3)
-at forecast.weather.gov, which will go live later this year.
-
 ---
 
 ### I'm new to this. How do I use the API?
@@ -132,12 +129,9 @@ The API won't support the existing JSON format, but take a look at the new JSON 
 application.
 
 ##### I'm not able to switch to using the API just yet.
-You can continue to use the existing legacy services by changing the URL your application uses from
-`forecast.weather.gov` to `f1.weather.gov`. This server will continue to provide the legacy services after we launch
-Forecast v3.
-
-Please note that f1.weather.gov is a temporary compatibility service that will be shut down at a future date. You will
-still need to move to API eventually, but this will allow you some additional time to transition.
+You can continue to use the existing legacy services on `forecast.weather.gov`, but we encourage you to move to the API
+when you can. We have more resources dedicated to supporting the API and much of our future development will be focused
+here.
 
 ##### I'm using a service that isn't described here.
 Please [give us some feedback](reporting-issues) on what you're using, so we can evaluate it for future
