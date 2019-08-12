@@ -1,3 +1,6 @@
+---
+show_nav: false
+---
 ## Community discussion and documentation for the US National Weather Service API
 Welcome! This GitHub Pages site is here to answer some of the most frequently asked questions about the National
 Weather Service public data API (api.weather.gov).

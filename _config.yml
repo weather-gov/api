@@ -1,2 +1,8 @@
 baseurl: /api
 title: api.weather.gov
+defaults:
+    -
+        scope:
+            path: ""
+        values:
+            show_nav: true
