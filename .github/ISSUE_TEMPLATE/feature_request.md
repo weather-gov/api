@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**NOTE**
+Please do not report operational issues (such as outages) here. We can not support these issues via this forum. Please report these as described here: https://weather-gov.github.io/api/reporting-issues
+
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 

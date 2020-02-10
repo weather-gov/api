@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**NOTE**
+Please do not report operational issues (such as outages) here. We can not support these issues via this forum. Please report these as described here: https://weather-gov.github.io/api/reporting-issues
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
