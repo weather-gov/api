@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: 'weather.gov API'
   description: 'weather.gov API'
-  version: 1.19.0
+  version: develop
 servers:
   -
     url: 'https://api.weather.gov'
@@ -53,14 +53,12 @@ paths:
         -
           $ref: '#/components/parameters/PaginationCursor'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/AlertCollection'
-        '301':
+        301:
           description: 'Certain common queries may be redirected to discrete URLs'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::alertQueryAction'
-    parameters: []
   /alerts/active:
     get:
       description: 'Returns all currently active alerts'
@@ -93,20 +91,18 @@ paths:
         -
           $ref: '#/components/parameters/Limit'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/AlertCollection'
-        '301':
+        301:
           description: 'Certain common queries may be redirected to discrete URLs'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::allActiveAlertsAction'
-    parameters: []
   /alerts/active/count:
     get:
       description: 'Returns info on the number of active alerts'
       operationId: alerts_active_count
       responses:
-        '200':
+        200:
           description: 'A data structure showing the counts of active alerts broken down by various categories'
           content:
             application/ld+json:
@@ -145,9 +141,7 @@ paths:
                       type: integer
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::allActiveAlertsCountAction'
       parameters: []
-    parameters: []
   '/alerts/active/zone/{zoneId}':
     get:
       description: 'Returns active alerts for the given NWS public zone or county'
@@ -156,12 +150,10 @@ paths:
         -
           $ref: '#/components/parameters/NWSZoneId'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/AlertCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::activeAlertsByZoneAction'
-    parameters: []
   '/alerts/active/area/{area}':
     get:
       description: 'Returns active alerts for the given area (state or marine area)'
@@ -175,12 +167,10 @@ paths:
           schema:
             $ref: '#/components/schemas/AreaCode'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/AlertCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::activeAlertsByAreaAction'
-    parameters: []
   '/alerts/active/region/{region}':
     get:
       description: 'Returns active alerts for the given marine region'
@@ -194,18 +184,16 @@ paths:
           schema:
             $ref: '#/components/schemas/MarineRegionCode'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/AlertCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::activeAlertsByRegionAction'
-    parameters: []
   /alerts/types:
     get:
       description: 'Returns a list of alert types'
       operationId: alerts_types
       responses:
-        '200':
+        200:
           description: 'A list of recognized event types'
           content:
             application/ld+json:
@@ -219,9 +207,7 @@ paths:
                     description: 'A list of recognized event types'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::alertTypesAction'
       parameters: []
-    parameters: []
   '/alerts/{id}':
     get:
       description: 'Returns a specific alert'
@@ -235,7 +221,7 @@ paths:
           schema:
             $ref: '#/components/schemas/AlertId'
       responses:
-        '200':
+        200:
           description: 'An alert record'
           content:
             application/geo+json:
@@ -249,14 +235,12 @@ paths:
                 $ref: '#/components/schemas/AlertCap'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\AlertController::singleAlertAction'
-    parameters: []
   /glossary:
     get:
       description: 'Returns glossary terms'
       operationId: glossary
       responses:
-        '200':
+        200:
           description: 'A set of glossary terms'
           content:
             application/ld+json:
@@ -279,9 +263,7 @@ paths:
                     description: 'A list of glossary terms'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\GlossaryController::glossaryAction'
       parameters: []
-    parameters: []
   '/gridpoints/{wfo}/{x},{y}':
     get:
       description: 'Returns raw numerical forecast data for a 2.5km grid area'
@@ -294,7 +276,7 @@ paths:
         -
           $ref: '#/components/parameters/GridpointY'
       responses:
-        '200':
+        200:
           description: 'Gridpoint forecast data'
           content:
             application/geo+json:
@@ -305,8 +287,6 @@ paths:
                 $ref: '#/components/schemas/GridpointJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\GridpointController::gridpointAction'
-    parameters: []
   '/gridpoints/{wfo}/{x},{y}/forecast':
     get:
       description: 'Returns a textual forecast for a 2.5km grid area'
@@ -323,12 +303,10 @@ paths:
         -
           $ref: '#/components/parameters/GridpointForecastUnits'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/GridpointForecast'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\GridpointController::gridpointForecastAction'
-    parameters: []
   '/gridpoints/{wfo}/{x},{y}/forecast/hourly':
     get:
       description: 'Returns a textual hourly forecast for a 2.5km grid area'
@@ -345,12 +323,10 @@ paths:
         -
           $ref: '#/components/parameters/GridpointForecastUnits'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/GridpointForecast'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\GridpointController::gridpointHourlyForecastAction'
-    parameters: []
   '/gridpoints/{wfo}/{x},{y}/stations':
     get:
       description: 'Returns a list of observation stations usable for a given 2.5km grid area'
@@ -363,12 +339,10 @@ paths:
         -
           $ref: '#/components/parameters/GridpointY'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/ObservationStationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\GridpointController::gridpointStationsAction'
-    parameters: []
   '/icons/{set}/{timeOfDay}/{first}':
     get:
       description: 'Returns a forecast icon. Icon services in API are deprecated.'
@@ -420,7 +394,7 @@ paths:
             minimum: 2
             type: integer
       responses:
-        '200':
+        200:
           description: success
           content:
             image/png:
@@ -429,8 +403,6 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       deprecated: true
-      x-controller: 'App\Controller\IconController::iconAction'
-    parameters: []
   '/icons/{set}/{timeOfDay}/{first}/{second}':
     get:
       description: 'Returns a forecast icon. Icon services in API are deprecated.'
@@ -489,7 +461,7 @@ paths:
             minimum: 2
             type: integer
       responses:
-        '200':
+        200:
           description: success
           content:
             image/png:
@@ -498,14 +470,12 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       deprecated: true
-      x-controller: 'App\Controller\IconController::iconAction'
-    parameters: []
   /icons:
     get:
       description: 'Returns a list of icon codes and textual descriptions. Icon services in API are deprecated.'
       operationId: icons_summary
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -530,9 +500,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       deprecated: true
-      x-controller: 'App\Controller\IconController::indexAction'
       parameters: []
-    parameters: []
   '/thumbnails/satellite/{area}':
     get:
       description: 'Returns a thumbnail image for a satellite region. Image services in API are deprecated.'
@@ -554,7 +522,7 @@ paths:
               - w
             type: string
       responses:
-        '200':
+        200:
           description: 'An image file'
           content:
             image/jpeg:
@@ -563,8 +531,6 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       deprecated: true
-      x-controller: 'App\Controller\ImageController::thumbnailSatelliteAction'
-    parameters: []
   '/stations/{stationId}/observations':
     get:
       description: 'Returns a list of observations for a given station'
@@ -585,12 +551,10 @@ paths:
             minimum: 1
             type: integer
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/ObservationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ObservationController::observationListAction'
-    parameters: []
   '/stations/{stationId}/observations/latest':
     get:
       description: 'Returns the latest observation for a station'
@@ -605,12 +569,10 @@ paths:
           schema:
             type: boolean
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/Observation'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ObservationController::stationLatestObservationAction'
-    parameters: []
   '/stations/{stationId}/observations/{time}':
     get:
       description: 'Returns a single observation.'
@@ -627,12 +589,10 @@ paths:
             type: string
             format: date-time
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/Observation'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ObservationController::stationSingleObservationAction'
-    parameters: []
   /stations:
     get:
       description: 'Returns a list of observation stations.'
@@ -667,12 +627,10 @@ paths:
             minimum: 1
             type: integer
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/ObservationStationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ObservationStationController::stationsAction'
-    parameters: []
   '/stations/{stationId}':
     get:
       description: 'Returns metadata about a given observation station'
@@ -681,7 +639,7 @@ paths:
         -
           $ref: '#/components/parameters/ObservationStationId'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -692,8 +650,6 @@ paths:
                 $ref: '#/components/schemas/ObservationStationJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ObservationStationController::stationAction'
-    parameters: []
   '/offices/{officeId}':
     get:
       description: 'Returns metadata about a NWS forecast office'
@@ -702,7 +658,7 @@ paths:
         -
           $ref: '#/components/parameters/NWSForecastOfficeId'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -710,8 +666,6 @@ paths:
                 $ref: '#/components/schemas/Office'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\OfficeController::officeAction'
-    parameters: []
   '/offices/{officeId}/headlines/{headlineId}':
     get:
       description: 'Returns a specific news headline for a given NWS office'
@@ -727,7 +681,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -735,8 +689,6 @@ paths:
                 $ref: '#/components/schemas/OfficeHeadline'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\OfficeController::officeHeadlineAction'
-    parameters: []
   '/offices/{officeId}/headlines':
     get:
       description: 'Returns a list of news headlines for a given NWS office'
@@ -745,7 +697,7 @@ paths:
         -
           $ref: '#/components/parameters/NWSForecastOfficeId'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -753,8 +705,6 @@ paths:
                 $ref: '#/components/schemas/OfficeHeadlineCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\OfficeController::officeHeadlinesAction'
-    parameters: []
   '/points/{point}':
     get:
       description: 'Returns metadata about a given latitude/longitude point'
@@ -763,7 +713,7 @@ paths:
         -
           $ref: '#/components/parameters/PathPoint'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -774,8 +724,6 @@ paths:
                 $ref: '#/components/schemas/PointJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\PointController::pointAction'
-    parameters: []
   '/points/{point}/stations':
     get:
       description: 'Returns a list of observation stations for a given point'
@@ -784,13 +732,11 @@ paths:
         -
           $ref: '#/components/parameters/PathPoint'
       responses:
-        '301':
+        301:
           description: 'redirect to gridpoint stations'
         default:
           $ref: '#/components/responses/Error'
       deprecated: true
-      x-controller: 'App\Controller\PointController::pointStationsAction'
-    parameters: []
   /radar/servers:
     get:
       description: 'Returns a list of radar servers'
@@ -803,15 +749,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::serversAction'
-    parameters: []
   '/radar/servers/{id}':
     get:
       description: 'Returns metadata about a given radar server'
@@ -831,15 +775,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::serverAction'
-    parameters: []
   /radar/stations:
     get:
       description: 'Returns a list of radar stations'
@@ -869,17 +811,15 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
-              schema: {  }
+              schema: []
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::stationsAction'
-    parameters: []
   '/radar/stations/{stationId}':
     get:
       description: 'Returns metadata about a given radar station'
@@ -905,17 +845,15 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
-              schema: {  }
+              schema: []
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::stationAction'
-    parameters: []
   '/radar/stations/{stationId}/alarms':
     get:
       description: 'Returns metadata about a given radar station alarms'
@@ -929,15 +867,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::stationAlarmsAction'
-    parameters: []
   '/radar/queues/{host}':
     get:
       description: 'Returns metadata about a given radar queue'
@@ -1002,15 +938,13 @@ paths:
             minimum: 1
             type: integer
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::queueAction'
-    parameters: []
   '/radar/profilers/{stationId}':
     get:
       description: 'Returns metadata about a given radar wind profiler'
@@ -1036,15 +970,13 @@ paths:
           schema:
             $ref: '#/components/schemas/ISO8601Duration'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
-              schema: {  }
+              schema: []
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\RadarController::profilerAction'
-    parameters: []
   /products:
     get:
       description: 'Returns a list of text products'
@@ -1116,7 +1048,7 @@ paths:
             minimum: 1
             type: integer
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1124,14 +1056,12 @@ paths:
                 $ref: '#/components/schemas/TextProductCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productListAction'
-    parameters: []
   /products/locations:
     get:
       description: 'Returns a list of valid text product issuance locations'
       operationId: product_locations
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1139,15 +1069,13 @@ paths:
                 $ref: '#/components/schemas/TextProductLocationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productLocationsAction'
       parameters: []
-    parameters: []
   /products/types:
     get:
       description: 'Returns a list of valid text product types and codes'
       operationId: product_types
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1155,9 +1083,7 @@ paths:
                 $ref: '#/components/schemas/TextProductTypeCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productTypesAction'
       parameters: []
-    parameters: []
   '/products/{productId}':
     get:
       description: 'Returns a specific text product'
@@ -1171,7 +1097,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1179,8 +1105,6 @@ paths:
                 $ref: '#/components/schemas/TextProduct'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productAction'
-    parameters: []
   '/products/types/{typeId}':
     get:
       description: 'Returns a list of text products of a given type'
@@ -1194,7 +1118,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1202,8 +1126,6 @@ paths:
                 $ref: '#/components/schemas/TextProductCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productsByTypeAction'
-    parameters: []
   '/products/types/{typeId}/locations':
     get:
       description: 'Returns a list of valid text product issuance locations for a given product type'
@@ -1217,7 +1139,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1225,8 +1147,6 @@ paths:
                 $ref: '#/components/schemas/TextProductLocationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::locationsWithProductTypeAction'
-    parameters: []
   '/products/locations/{locationId}/types':
     get:
       description: 'Returns a list of valid text product types for a given issuance location'
@@ -1240,7 +1160,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1248,8 +1168,6 @@ paths:
                 $ref: '#/components/schemas/TextProductTypeCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::locationProductsAction'
-    parameters: []
   '/products/types/{typeId}/locations/{locationId}':
     get:
       description: 'Returns a list of text products of a given type for a given issuance location'
@@ -1270,7 +1188,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: success
           content:
             application/ld+json:
@@ -1278,8 +1196,6 @@ paths:
                 $ref: '#/components/schemas/TextProductCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\TextProductController::productsByTypeAndLocationAction'
-    parameters: []
   /zones:
     get:
       description: 'Returns a list of zones'
@@ -1361,7 +1277,7 @@ paths:
             type: string
             format: date-time
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -1372,8 +1288,6 @@ paths:
                 $ref: '#/components/schemas/ZoneCollectionJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneListAction'
-    parameters: []
   '/zones/{type}':
     get:
       description: 'Returns a list of zones of a given type'
@@ -1471,7 +1385,7 @@ paths:
             type: string
             format: date-time
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -1482,8 +1396,6 @@ paths:
                 $ref: '#/components/schemas/ZoneCollectionJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneListAction'
-    parameters: []
   '/zones/{type}/{zoneId}':
     get:
       description: 'Returns metadata about a given zone'
@@ -1510,7 +1422,7 @@ paths:
             type: string
             format: date-time
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -1521,8 +1433,6 @@ paths:
                 $ref: '#/components/schemas/ZoneJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneAction'
-    parameters: []
   '/zones/{type}/{zoneId}/forecast':
     get:
       description: 'Returns the current zone forecast for a given zone'
@@ -1538,7 +1448,7 @@ paths:
         -
           $ref: '#/components/parameters/NWSZoneId'
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -1549,8 +1459,6 @@ paths:
                 $ref: '#/components/schemas/ZoneForecastJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneForecastAction'
-    parameters: []
   '/zones/forecast/{zoneId}/observations':
     get:
       description: 'Returns a list of observations for a given zone'
@@ -1581,7 +1489,7 @@ paths:
             minimum: 1
             type: integer
       responses:
-        '200':
+        200:
           description: success
           content:
             application/geo+json:
@@ -1592,8 +1500,6 @@ paths:
                 $ref: '#/components/schemas/ObservationCollectionJsonLd'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneObservationsAction'
-    parameters: []
   '/zones/forecast/{zoneId}/stations':
     get:
       description: 'Returns a list of observation stations for a given zone'
@@ -1602,12 +1508,10 @@ paths:
         -
           $ref: '#/components/parameters/NWSZoneId'
       responses:
-        '200':
+        200:
           $ref: '#/components/responses/ObservationStationCollection'
         default:
           $ref: '#/components/responses/Error'
-      x-controller: 'App\Controller\ZoneController::zoneStationsAction'
-    parameters: []
 components:
   schemas:
     Alert:
@@ -1744,7 +1648,7 @@ components:
           description: "System-specific additional parameters associated with the alert message.\nThe keys in this object correspond to parameter definitions in the NWS CAP specification.\n"
           additionalProperties:
             type: array
-            items: {  }
+            items: []
       description: "An object representing a public alert message.\nUnless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.\nhttp://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://alerts.weather.gov/#technical-notes-v12\n"
     AlertCollection:
       type: object
@@ -1815,7 +1719,6 @@ components:
           items:
             $ref: '#/components/schemas/Alert'
     AlertId:
-      pattern: '^NWS(?:-\w+)+(?:-\d+)+$'
       type: string
       description: 'The identifier of the alert message.'
     AlertCertainty:
@@ -2600,6 +2503,63 @@ components:
         - PI
       type: string
       description: "Marine region code. These are groups of marine areas combined.\n* AL: Alaska waters (PK)\n* AT: Atlantic Ocean (AM, AN)\n* GL: Great Lakes (LC, LE, LH, LM, LO, LS, SL)\n* GM: Gulf of Mexico (GM)\n* PA: Eastern Pacific Ocean and U.S. West Coast (PZ)\n* PI: Central and Western Pacific (PH, PM, PS)\n"
+    MetarPhenomenon:
+      required:
+        - intensity
+        - modifier
+        - weather
+        - rawString
+      type: object
+      properties:
+        intensity:
+          enum:
+            - light
+            - heavy
+          type: string
+          nullable: true
+        modifier:
+          enum:
+            - patches
+            - blowing
+            - low_drifting
+            - freezing
+            - shallow
+            - partial
+            - showers
+          type: string
+          nullable: true
+        weather:
+          enum:
+            - fog_mist
+            - dust_storm
+            - dust
+            - drizzle
+            - funnel_cloud
+            - fog
+            - smoke
+            - hail
+            - snow_pellets
+            - haze
+            - ice_crystals
+            - ice_pellets
+            - dust_whirls
+            - spray
+            - rain
+            - sand
+            - snow_grains
+            - snow
+            - squalls
+            - sand_storm
+            - thunderstorms
+            - unknown
+            - volcanic_ash
+          type: string
+        rawString:
+          type: string
+        inVicinity:
+          type: boolean
+      description: 'An object representing a decoded METAR phenomenon string.'
+      additionalProperties: false
     MetarSkyCoverage:
       enum:
         - OVC
@@ -2746,7 +2706,7 @@ components:
       type: string
       description: 'Three-letter identifier for a NWS office.'
     NWSZoneID:
-      pattern: '^[A-Z]{2}[CZ]\d{3}$'
+      pattern: '^(A[KLMNRSZ]|C[AOT]|D[CE]|FL|G[AMU]|I[ADLN]|K[SY]|L[ACEHMOS]|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AHKMRSZ]|S[CDL]|T[NX]|UT|V[AIT]|W[AIVY]|[HR]I)[CZ]\d{3}$'
       type: string
       description: "UGC identifier for a NWS forecast zone or county.\nThe first two letters will correspond to either a state code or marine area code (see #/components/schemas/StateTerritoryCode and #/components/schemas/MarineAreaCode for lists of valid letter combinations).\nThe third letter will be Z for public/fire zone or C for county.\n"
     NWSZoneType:
@@ -2793,7 +2753,7 @@ components:
         presentWeather:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/MetarPhenomenon'
         temperature:
           $ref: '#/components/schemas/QuantitativeValue'
         dewpoint:
@@ -3567,7 +3527,7 @@ components:
           schema:
             $ref: '#/components/schemas/GridpointForecastJsonLd'
         application/vnd.noaa.dwml+xml:
-          schema: {  }
+          schema: []
     Observation:
       description: 'An observation record.'
       content:
@@ -3578,7 +3538,7 @@ components:
           schema:
             $ref: '#/components/schemas/ObservationJsonLd'
         application/vnd.noaa.obs+xml:
-          schema: {  }
+          schema: []
     ObservationCollection:
       description: 'A collection of observation records.'
       content:
@@ -3608,7 +3568,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/AreaCode'
-      x-exclusive-group: geospatial
     AlertCertainty:
       name: certainty
       in: query
@@ -3661,7 +3620,6 @@ components:
       description: "Point (latitude,longitude)\nThis parameter is incompatible with the following parameters: area, region, region_type, zone\n"
       schema:
         $ref: '#/components/schemas/PointString'
-      x-exclusive-group: geospatial
     AlertRegion:
       name: region
       in: query
@@ -3672,7 +3630,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/MarineRegionCode'
-      x-exclusive-group: geospatial
     AlertRegionType:
       name: region_type
       in: query
@@ -3682,7 +3639,6 @@ components:
           - land
           - marine
         type: string
-      x-exclusive-group: geospatial
     AlertSeverity:
       name: severity
       in: query
@@ -3729,7 +3685,6 @@ components:
         type: array
         items:
           $ref: '#/components/schemas/NWSZoneID'
-      x-exclusive-group: geospatial
     GridpointForecastFeatureFlags:
       name: Feature-Flags
       in: header
