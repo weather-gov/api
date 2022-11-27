@@ -2432,7 +2432,7 @@ components:
                     type: string
             additionalProperties: false
         CenterWeatherServiceUnitJsonLd:
-            - $ref: '#/components/schemas/Office'
+            $ref: '#/components/schemas/Office'
         Date:
             description: Date (in YYYY-MM-DD format).
             type: string
@@ -3084,9 +3084,9 @@ components:
                     pattern: ^P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?\/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:?\d{2}?)|NOW)$
                     example: P1Y2M10DT2H30M/2008-05-11T15:30:00Z
         JsonLdContext:
-            anyOf:
-                - type: array
-                - type: object
+            type: array
+            items:
+                additionalProperties: true
         LandRegionCode:
             description: >
                 Land region code. These correspond to the six NWS regional headquarters:
